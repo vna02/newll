@@ -1,0 +1,158 @@
+#include<iostream>
+using namespace std;
+
+class node {
+	public:
+	int val;
+	node*next;
+	node(int newval) {
+	val = newval;
+	next = 	NULL;
+	}
+};
+
+
+class linkedlist {
+	public:
+	node*head;
+	linkedlist () {
+	head = NULL;
+	}
+
+void insert (int newval) {
+	node*temp = new node(newval);
+	temp->next = head;
+	head = temp;
+	}
+
+void delet () {
+	node*temp = head;
+	head = head->next;
+	delete temp;
+	}
+
+void display () {
+	node*curr = head;
+	while (curr!= NULL) {
+	cout<<curr->val<<"->";
+	curr = curr->next;
+	}
+	cout<< "NULL"<<endl;
+	}
+
+
+int countitems () {
+	int count = 0;
+	node*curr = head;
+	while (curr!= NULL) {
+	count++;
+	curr= curr->next;
+	}
+	return count;
+}
+
+
+node*getpos (int pos) {
+	int count = 0;
+	node*curr = head;
+	while (count < (pos-1)) {
+	curr = curr->next;
+	count++;
+	}
+	return curr;
+	}
+
+void insertat (int val, int pos) {
+	if(pos<1||pos> (countitems()+1)) {
+	cout<< "Not a valid position"<<endl;
+	return;
+	}
+	node*curr = getpos(pos-1);
+	if (pos ==1) {
+	node*temp = new node(val);
+	temp->next = head;
+	head = temp;
+	//insert(int val);
+	}
+		
+	else {
+	node*temp = new node(val);
+	temp->next = curr->next;
+	curr->next = temp;
+	}
+
+}
+
+
+void deletat (int pos) {
+	if (pos > (countitems()+1)) {
+		cout<< "Not a valid position"<<endl;
+		return;
+	}
+	
+	node*curr = getpos(pos-1);
+	if (pos ==1) {
+	delet();
+	}
+	else {
+	node*temp = curr->next;
+	curr->next = temp->next;
+	delete temp;
+	}
+
+}
+
+//void swap (int pos a, int pos b) {
+	//node*temp = node*a;
+	//node*a = node*b;
+	//node*b = node*temp;
+	//}
+
+
+
+
+
+
+
+
+
+};
+int main () {
+	linkedlist l1;
+	for (int i=10; i>0; i--) {
+	//l1.insert(i);
+	}
+	l1.insert(1);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.insert(2);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.insert(4);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.insert(5);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.insertat(3,3);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.delet();
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.deletat(4);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.deletat(3);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.deletat(2);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	l1.deletat(1);
+	l1.display();
+	cout<< "Number of items=" <<l1.countitems()<<endl;
+	//l1.swap(2,6);
+
+	}
+
